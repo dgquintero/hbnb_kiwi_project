@@ -33,8 +33,8 @@ with model_graph.as_default():
     tf_session = Session()
     with tf_session.as_default():
 # Model saved with Keras model.save()
-        MODELS_PATH = 'models/model.h5'
-        WEIGHT_MODELS = 'models/weights.h5'
+        MODELS_PATH = 'models/model_new.h5'
+        WEIGHT_MODELS = 'models/weights_new.h5'
         cnn = tf.keras.models.load_model(MODELS_PATH)
         cnn.load_weights(WEIGHT_MODELS)
 #cnn._make_predict_function()
