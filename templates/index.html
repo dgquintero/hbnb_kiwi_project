@@ -1,31 +1,513 @@
-{% extends "base.html" %} {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>ACQUA TECH-KIWI</title>
+        <link rel="icon" type="image/x-icon" href="static/assets/img/acqua-logo.jpeg" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <!--<link href="./static/css/styles.css" rel="stylesheet" /> -->
 
-<h2>Image Classifier</h2>
+        <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet"> 
+        <style type="text/css">
+            .btn-primary btn-lg{
+              text-decoration: none;
+              padding: 10px;
+              font-weight: 600;
+              font-size: 20px;
+              color: #ffffff;
+              background-color: #1883ba;
+              border-radius: 6px;
+              border: 2px solid #0016b0;
+            }
+          </style>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="static/assets/img/acqua-logo.jpeg" alt=""  /></a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu<i class="fas fa-bars ml-1"></i></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ml-auto">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#welcome">Welcome</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#the_project">About the project</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#try_out">Try-out</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#project_path">The project path</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#what_is_acqua">what is acqua tech?</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">Team</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead" id="welcome"> 
+            <div class="container">               
+                <div class="masthead-subheading">Welcome To...</div>
+                <h1 style="color:whitesmoke;font-size:80px;">ACQUA TECH KIWI BOT PROJECT!</h1> 
+                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#try_out">Try Out</a>
+            </div>
+        </header>
+        <!-- ABOUT THE PROJECT -->
+        <section class="page-section" id="the_project">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">About the project</h2>
+                    <h3 class="section-subheading text-muted">A summary of  the project</h3>
+                </div>
+                <ul class="timeline">
+                    <li>
+                       <!-- <div class="timeline-image"><img class="rounded-circle img-fluid" src="static/assets/img/about/about-acqua-logo.jpg" alt="" /></div> -->                    
+                        <img src="static/assets/img/vision.png" alt="vision photo" width="400" height="200">
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>1 </h4>
+                                <h4 class="subheading">____________________________</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted"> <a href="https://www.kiwibot.com/" target="_blank">Kiwi</a> is a company of delivery services using kiwibots. The challenge of working with robots is self driving, something that the company believes can be solved completely using cameras, only vision. After trying several different approaches for the first years, kiwi have settled for a vision based detection system.</div>
+                                <h4 class="subheading">____________________________</h4>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <!--<div class="timeline-image"><img class="rounded-circle img-fluid" src="static/assets/img/about/dataset2.png" alt="" /></div> -->
+                        <!--<img src="static/assets/img/about/dataset.png" alt="dataset" width="600" height="400"> -->
+                        <img src="static/assets/img/vision2.png" alt="vision photo" width="400" height="200">
+                        
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>2.</h4>
+                                <h4 class="subheading">____________________________</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">The end goal of the project is to test and use a technique, instead of  calculating bounding boxes and then estimating distances to them (what the company has already implemented)  the idea is to produce, out of the input image, a pseudo occupation matrix of 1x3:</div>
+                                <h4 class="subheading">____________________________</h4>
+                        </div>
+                    </li>
+                    <li>
+                       <!-- <div class="timeline-image"><img class="rounded-circle img-fluid" src="static/assets/img/about/about-acqua-logo.jpg" alt="" /></div> -->
+                        <img src="static/assets/img/ex_simulator.png" alt="training model" width="300" height="300">
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>3.</h4>
+                                <h4 class="subheading">____________________________</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">The first part of the project, the mvp model can be seen as a simple classification problem. The idea is don't care for individual detections, only predict in which zone a person is located. Near, middle, far or non detection.</p></div>
+                            <h4 class="subheading">____________________________</h4>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="static/assets/img/about/acqua-logo.jpeg" alt="" />
+                        </div>
+                </ul>
+            </div>
+        </section>
+        <!--TRY OUT-->
+        <section class="page-section" id="try_out">
+            <div class="container">
+                <div class="text-center">
+                    <img src="static/assets/img/acqua-logo.jpeg" alt="training model" width="350" height="350">
+                    <h2 class="section-heading text-uppercase">Try out our project</h2>
+                    <h3 class="section-subheading text-muted">In the following section you can try the demo.</h3>
+                    <p>Our program works in the followng way: </p>
+                    <p>1. Click on the "Choose" button</p>
+                    <p>2. Select an mage from your computer</p>
+                    <p>3. Once the image is uploaded clik on predict!</p>
+                    <p>The program will calulate if the object detected is in the near, middle or far section. </p>
+                    <p>If is not any of the above it will show: "non detection"</p>
+                    <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#try_out">Select Image</a>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">In the bottom above seleect an image to see if it is close, mid or far.</p></div>
+                  
+                    <div class="container">
+                        <div id="content" style="margin-top:2em">
+                    <h2>Image Classifier</h2>
 
-<div>
-    <form id="upload-file" method="post" enctype="multipart/form-data">
-        <label for="imageUpload" class="upload-label">
-            Choose...
-        </label>
-        <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg">
-    </form>
+                    <div>
+                        <form id="upload-file" method="post" enctype="multipart/form-data">
+                            <label for="imageUpload" class="upload-label">
+                                Choose..
+                            </label>
+                            <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg">
+                        </form>
 
-    <div class="image-section" style="display:none;">
-        <div class="img-preview">
-            <div id="imagePreview">
+                        <div class="image-section" style="display:none;">
+                            <div class="img-preview">
+                                <div id="imagePreview">
+                                </div>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-primary btn-lg " id="btn-predict">Predict!</button>
+                            </div>
+                        </div>
+
+                        <div class="loader" style="display:none;"></div>
+
+                        <h3 id="result">
+                            <span> </span>
+                        </h3>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+                   
+       
+
+
+        
+        <!-- PROJECT PATH About-->
+        <section class="page-section" id="project_path">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">The project path</h2>
+                    <h3 class="section-subheading text-muted">A summary of the path we develop to achieve the goal</h3>
+                </div>
+                <ul class="timeline">
+                    <li>
+                       <!-- <div class="timeline-image"><img class="rounded-circle img-fluid" src="static/assets/img/about/about-acqua-logo.jpg" alt="" /></div> -->
+                        <video width="400" controls>
+                            <source src="static/assets/img/about/simulator.mp4" type="video/mp4">
+                            <source src="mov_bbb.ogg" type="video/ogg">
+                            Your browser does not support HTML video.
+                          </video>                        
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>1.Simulator </h4>
+                                <h4 class="subheading">____________________________</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">The first challenge we faced in our project was to create a simulator. The idea was to simulate an enviroment with people walking around in random ways. This was developed in Unity.</p></div>
+                            <h4 class="subheading">____________________________</h4>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <!--<div class="timeline-image"><img class="rounded-circle img-fluid" src="static/assets/img/about/dataset2.png" alt="" /></div> -->
+                        <!--<img src="static/assets/img/about/dataset.png" alt="dataset" width="600" height="400"> -->
+                        <img src="static/assets/img/about/dataset5.png" alt="dataset">
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>2.DATA</h4>
+                                <h4 class="subheading">____________________________</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">Our second challenge was to collect data, in this case our data are images. Once we had the simulator working what we did was to run it
+                                and to capture some photos of the "people" while they where walking in different position. On a first dataset we took 1.600 images and at the end wefinished using around 3.600 images.</p></div>
+                                <h4 class="subheading">____________________________</h4>
+                        </div>
+                    </li>
+                    <li>
+                       <!-- <div class="timeline-image"><img class="rounded-circle img-fluid" src="static/assets/img/about/about-acqua-logo.jpg" alt="" /></div> -->
+                        <img src="static/assets/img/about/training.jpeg" alt="training model" width="300" height="300">
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>3. The Model</h4>
+                                <h4 class="subheading">____________________________</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">Our third challenge was to create a model that would be trained to learn and recognized if an object in an image is located near, medium or far from the kiwibot view. To train the model we divided the dataset images in 80-20. 80% of the pictures where used to train the model and the 20% left where used to test.</p>
+                            <h4 class="subheading">____________________________</h4>
+                        </div>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <!--<div class="timeline-image"><img class="rounded-circle img-fluid" src="static/assets/img/about/about-acqua-logo.jpg" alt="" /></div> -->
+                        <img src="static/assets/img/about/landing.png" alt="training model" width="500" height="250">
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>4.Landing page</h4>
+                                <h4 class="subheading">____________________________</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">Once we had the model working well, our fourth challenge was to implement our program in a landing page. To join the backend with the frontend
+                            </p>
+                            <h4 class="subheading">____________________________</h4>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                      <!--  <div class="timeline-image"><img class="rounded-circle img-fluid" src="static/assets/img/about/about-acqua-logo.jpg" alt="" /></div> -->
+                        <video width="400" controls>
+                            <source src="static/assets/img/about/deployHD.mp4" type="video/mp4">
+                            <source src="mov_bbb.ogg" type="video/ogg">
+                            Your browser does not support HTML video.
+                          </video> 
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>5.Deployment </h4>
+                                <h4 class="subheading">____________________________</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">Finally, once we had the backend and the landing page ready our last challenge was to find a server to make the deployment process in wich finally we decided to do it in Heroku platform.</p></div>
+                            <h4 class="subheading">____________________________</h4>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" src="static/assets/img/about/acqua-logo.jpeg" alt="" />
+                            <h4>Be Part<br />Of Our<br />Story!</h4>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!-- WHAT IS ACQUA TECH? Portfolio Grid-->
+        <section class="page-section bg-light" id="what_is_acqua">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">What is Acqua tech?</h2>
+                    <img src="static/assets/img/acqua-logo.jpeg" alt="training model" width="200" height="200">
+                    <p>Acqua tech is a group conformed by software developers participants from <a href="https://www.holbertonschool.com/" target="_blank">Holberton School</a> #cohort10</p>
+                    <p> Holberton School is a software development academy in wich every student studies for 9 months the foundations of programming. After 9 months of intense sudies the participants have to present a final project in wich they can develop and apply all what they have learned during this period. </p>
+		    <p>Thinking on the final porject, Holberton School made some alliances with some companies in wich every participant can work in a real project to develop with them.</p>
+                </div>
+                <div class="row">
+            </div>
+        </section>
+        <!-- Team-->
+        <section class="page-section bg-light" id="team">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
+                    <h3 class="section-subheading text-muted">L.</h3>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="static/assets/img/team/alejo-ortiz.jpg" alt="photo" />
+                            <h4>Alejo Ortíz</h4>
+                            <p class="text-muted">Software Developer</p>
+                            <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/alejoortizd" target="_blank"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="https://github.com/daod2003" target="_blank"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="static/assets/img/team/oscar-rodriguez.jpg" alt="photo" />
+                            <h4>Oscar Rodríguez</h4>
+                            <p class="text-muted">Software Developer</p>
+                            <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/OscaRT07" target="_blank"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="https://github.com/oscarmrt" target="_blank"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="static/assets/img/team/daniel-quintero.jpg" alt="photo" />
+                            <h4>Daniel Quintero</h4>
+                            <p class="text-muted">Software Developer</p>
+                            <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/danielq02" target="_blank"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="https://github.com/dgquintero" target="_blank"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="static/assets/img/team/jorge-chaux.jpg" alt="photo" />
+                            <h4>Jorge Chaux Jr</h4>
+                            <p class="text-muted">Software Developer</p>
+                            <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/jorgechauxjr" target="_blank"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="https://github.com/jorgechauxjr" target="_blank"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem</p></div>
+                </div>
+            </div>
+        </section>
+        <!-- Companies logos-->
+        <div class="py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <a href="#!"><img class="img-fluid d-block mx-auto" src="static/assets/img/logos/holberton-logo.png" alt="Holberton logo" /></a>
+                    </div>
+                        <div class="col-sm-4">
+                            <a href="#!"><img class="img-fluid d-block mx-auto" src="static/assets/img/logos/logo-kiwi2.png" alt="Kiwi Logo" /></a>
+                        </div>
+                        <div class="col-sm-4">
+                            <a href="#!"><img class="img-fluid d-block mx-auto" src="static/assets/img/logos/acqua-logo.jpeg" alt="Acqua logo" /></a>
+                        </div>
+                </div>
             </div>
         </div>
-        <div>
-            <button type="button" class="btn btn-primary btn-lg " id="btn-predict">Predict!</button>
+        <!-- Footer-->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-left">Copyright  odaj 2020</div>
+                    <div class="col-lg-4 my-3 my-lg-0">
+                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a><a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="col-lg-4 text-lg-right"><a class="mr-3" href="#!">Privacy Policy</a><a href="#!">Terms of Use</a></div>
+                </div>
+            </div>
+        </footer>
+        <!-- Portfolio Modals--><!-- Modal 1-->
+        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-dismiss="modal"><img src="static/assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project Details Go Here-->
+                                    <h2 class="text-uppercase">Project Name</h2>
+                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <img class="img-fluid d-block mx-auto" src="static/assets/img/portfolio/01-full.jpg" alt="" />
+                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <ul class="list-inline">
+                                        <li>Date: January 2020</li>
+                                        <li>Client: Threads</li>
+                                        <li>Category: Illustration</li>
+                                    </ul>
+                                    <button class="btn btn-primary" data-dismiss="modal" type="button"><i class="fas fa-times mr-1"></i>Close Project</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-
-    <div class="loader" style="display:none;"></div>
-
-    <h3 id="result">
-        <span> </span>
-    </h3>
-
-</div>
-
-{% endblock %}
+        <!-- Modal 2-->
+        <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-dismiss="modal"><img src="static/assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project Details Go Here-->
+                                    <h2 class="text-uppercase">Project Name</h2>
+                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <img class="img-fluid d-block mx-auto" src="static/assets/img/portfolio/02-full.jpg" alt="" />
+                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <ul class="list-inline">
+                                        <li>Date: January 2020</li>
+                                        <li>Client: Explore</li>
+                                        <li>Category: Graphic Design</li>
+                                    </ul>
+                                    <button class="btn btn-primary" data-dismiss="modal" type="button"><i class="fas fa-times mr-1"></i>Close Project</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal 3-->
+        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-dismiss="modal"><img src="static/assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project Details Go Here-->
+                                    <h2 class="text-uppercase">Project Name</h2>
+                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <img class="img-fluid d-block mx-auto" src="static/assets/img/portfolio/03-full.jpg" alt="" />
+                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <ul class="list-inline">
+                                        <li>Date: January 2020</li>
+                                        <li>Client: Finish</li>
+                                        <li>Category: Identity</li>
+                                    </ul>
+                                    <button class="btn btn-primary" data-dismiss="modal" type="button"><i class="fas fa-times mr-1"></i>Close Project</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal 4-->
+        <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-dismiss="modal"><img src="static/assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project Details Go Here-->
+                                    <h2 class="text-uppercase">Project Name</h2>
+                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <img class="img-fluid d-block mx-auto" src="static/assets/img/portfolio/04-full.jpg" alt="" />
+                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <ul class="list-inline">
+                                        <li>Date: January 2020</li>
+                                        <li>Client: Lines</li>
+                                        <li>Category: Branding</li>
+                                    </ul>
+                                    <button class="btn btn-primary" data-dismiss="modal" type="button"><i class="fas fa-times mr-1"></i>Close Project</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal 5-->
+        <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-dismiss="modal"><img src="static/assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project Details Go Here-->
+                                    <h2 class="text-uppercase">Project Name</h2>
+                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <img class="img-fluid d-block mx-auto" src="static/assets/img/portfolio/05-full.jpg" alt="" />
+                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <ul class="list-inline">
+                                        <li>Date: January 2020</li>
+                                        <li>Client: Southwest</li>
+                                        <li>Category: Website Design</li>
+                                    </ul>
+                                    <button class="btn btn-primary" data-dismiss="modal" type="button"><i class="fas fa-times mr-1"></i>Close Project</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal 6-->
+        <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-dismiss="modal"><img src="static/assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project Details Go Here-->
+                                    <h2 class="text-uppercase">Project Name</h2>
+                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                    <img class="img-fluid d-block mx-auto" src="static/assets/img/portfolio/06-full.jpg" alt="" />
+                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <ul class="list-inline">
+                                        <li>Date: January 2020</li>
+                                        <li>Client: Window</li>
+                                        <li>Category: Photography</li>
+                                    </ul>
+                                    <button class="btn btn-primary" data-dismiss="modal" type="button"><i class="fas fa-times mr-1"></i>Close Project</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Contact form JS-->
+        <script src="static/assets/mail/jqBootstrapValidation.js"></script>
+        <script src="static/assets/mail/contact_me.js"></script>
+        <!-- Core theme JS-->
+        <script src="static/js/scripts.js"></script>
+        <!--script src="{{ url_for('static', filename='js/scripts.js') }}" type="text/javascript"></script> -->
+    </body>
+</html>
