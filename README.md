@@ -1,23 +1,30 @@
-# Acqua_Kiwi_Project$
+# Acqua_Kiwi_Project
 
 ## **About the Project**
 Kiwi is a company of delivery services using kiwibots. The challenge of working with robots is self driving, something that the company believes can be solved completely using cameras, only vision. After trying several different approaches for the first years, kiwi have settled for a vision based detection system.
 
 <img src="./media/kiwi1.jpg" />
 
+The end goal of the project is to test and use a technique, instead of calculating bounding boxes and then estimating distances to them (what the company has already implemented) the idea is to produce, out of the input image, a pseudo occupation matrix of 1x3:
+
+<img src="./media/kiwi2.jpg" />
+
+The first part of the project, the mvp model can be seen as a simple classification problem. The idea is don't care for individual detections, only predict in which zone a person is located. Near, middle, far or non detection.
+
+<img src="./media/kiwi3.jpg" />
+
 ---
 ## **Data**
----
+
 Any machine learning project must start by obtaining the data, in fact google some time ago launched its exclusive search engine for data collection (take a look: https://datasetsearch.research.google.com/). For this particular case, we are going to require simulated images of people walking. In order to know if a robot is capable of detecting areas of proximity such as near, medium or far. Recognizing these proximity zones would allow the robot to know if it can continue at the current speed, must reduce it, or stop.
 
 ---
 
 ## **Requirements**
-| | | | | |
+||||||
 :---:|:---:|:---:|:---:|:---:
 <a target="_blank" href="https://unity.com/"><img src="./media/unity.jpg" alt="unity" width=115/></a>|<a target="_blank" href="https://anaconda.org/"><img src="./media/anaconda_logo.jpg" alt="anaconda" /></a>|<a target="_blank" href="https://www.tensorflow.org/"><img src="./media/tensorflow_logo.jpg" alt="tensorflow" /></a>|<a target="_blank" href="https://pandas.pydata.org/"><img src="./media/pandas_logo.jpg" alt="pandas" /></a>|<a target="_blank" href="http://www.numpy.org/"><img src="./media/numpy_logo.jpg" alt="numpy" /></a>|
-<a target="_blank" href="https://yaml.org/"><img src="./media/Yaml_logo.png" alt="yaml" width=60/></a>
-|<a target="_blank" href="https://keras.io/"><img src="./media/keras_logo.jpg" alt="keras" /></a>
+<a target="_blank" href="https://yaml.org/"><img src="./media/Yaml_logo.png" alt="yaml" width=60/></a>|<a target="_blank" href="https://keras.io/"><img src="./media/keras_logo.jpg" alt="keras" /></a>|<a target="_blank" href="https://www.python.org/"><img src="./media/python-logo.jpg" alt="python" width=200/></a>|<a target="_blank" href="https://flask.palletsprojects.com/en/1.1.x/"><img src="./media/flask-logo.jpg" alt="flask" width=200/></a>|<a target="_blank" href=""><img src="./media/js.jpg" alt="js" width=150/></a>|<a target="_blank" href="https://getbootstrap.com/"><img src="./media/Bts.jpg" alt="bootstrap" width=150/></a>
 
 ---
 
@@ -135,13 +142,68 @@ So as the target data set is large and different from the base data set, we crea
     Depending on the type of computer you use, the execution time of this file may vary, for this exercise we worked with a computer with a 9th gen CORE i7 processor, an NVIDIA GeForce GTX 1650 video card with Max-Q Desing with 4Gb of Ram and 16Gb of RAM and it takes to finish 3:50 hours.
 
 ### Step 4
-- After the training you can run now the follow code
+- After the training, you can change the image to be tested in line 32 of the file predict `predict('filename.jpg')` run now the follow code
    ~~~
    python3 predict.py
    ~~~ 
+- Its everything is ok you can get a result like this in your terminal
+
+    <img src="./media/result1.jpg" />
+
+---
+
+## **Results**
+For Kiwi, the sectors are very important, that's why they shared the areas that they needed to recognize, these areas are shown in the following image:
+
+<img src="./media/zones.jpg" />
+
+>The red zone is ***near***, the yellow is ***medium***, the green is ***far*** and where there is no color it is considered ***super far***.
+
+During the development of the MVP and taking into account the areas of proximity given by the company, we obtained the following results
+
+<img src="./media/result.jpg" />
+<img src="./media/result2.jpg" />
+
+As you can see in these 2 images, the model is able to recognize if a person has their back to the robot and classifies it as super far, while if the person is facing it, it classifies it depending on the area, in this case it is in the middle area.
+
+---
+
+## **Bugs**
+At this time the model has 89.87% of accurately predicting the image to evaluate, for this reason there may be an error of around 11% and we want to show some errors that we found during the development of the MVP
+
+<img src="./media/bug.jpg" />
+<img src="./media/bug1.jpg" />
+
+In the first photo, the image is in the far zone and the model classifies it as super far, the second photo is a photo that is clearly in the near zone, but the model classifies it in the super far zone. These errors would belong to that 11% probability of being wrong and would lead to readjusting the model.
+
+---
+
+## **Conclusions**
+1. The model dataset must be improved, in order to have a different type of information that feeds the model and leaves it better balanced, currently it has 3 people, 2 people and 1 people on a walking street.
+
+2. More time must be dedicated to enter to investigate the weights that the model currently has, in order to punish the error and that the model continues to learn and improve, since its accuracy is currently 89%.
+
+3. During the development of the MVP, it was possible to achieve a simulator using Unity, train a Machine Learning model and deploy using heroku, bootstrap and js.
+
+4. Although the Holberton foundations program did not include the technologies worked on, the Holberton program did teach us how to research and carry out a project from 0 with excellent results.
+
+5. We consider that 5 weeks is too little time to have a model very close to reality, since we worked with simulated images, to improve this it must be put into practice with real images and doing field tests, to improve the development of the model current.
+
+6. Teamwork is vital in this type of work, so knowing how to delegate and empower activities is important, thanks to this we were able to have an MVP according to the requirements of Holberton and Kiwi.
+
+7. Artificial intelligence is a very powerful tool, but you have to know how to use it, for this reason the data you have is very important, since with it you train and if the data is bad, you will have bad results, but if the data is good collected you can have amazing results.
+
+---
+
+## **acknowledgment**
+- On behalf of the team, we want to thank Holberton sincerely for giving us this opportunity to work with a company like Kiwi, for teaching us about soft skills and learning to learn. ![follow me](https://img.shields.io/twitter/follow/HolbertonCOL?style=social) ![follow me](https://img.shields.io/twitter/follow/holbertonschool?style=social)
+
+- To the Kiwi company, for choosing and placing their trust in us, in challenging us to carry out a project as important to the company as it is the detection of images through machine learning, to the patience and dedication of Jason Oviedo to be able to have an MVP tailored to needs. ![follow me](https://img.shields.io/twitter/follow/jasonkiwibot?style=social) ![follow me](https://img.shields.io/twitter/follow/kiwicampus?style=social)
+
+- To our peer Carlos Garcia, who guided us and showed the principles of Unity to be able to make a simulator of people in Unity. ![follow me](https://img.shields.io/twitter/follow/karlgarmor?style=social)
 
 
-## Authors
+## **Authors**
 | | | | | |
 :---:|:---:|:---:|:---:|:---:
-Daniel Gustavo Quintero<a><img src="./media/Daniel.jpg" width=145 />[![GitHub followers](https://img.shields.io/github/followers/dgquintero?label=Follow%20me&style=social)](https://github.com/dgquintero)</a>|Oscar Mauricio Rodrigues<a><img src="./media/Oscar.jpg" width=145/>[![GitHub followers](https://img.shields.io/github/followers/oscarmrt?label=Follow%20me&style=social)](https://github.com/oscarmrt)</a>|Jorge Junior Chaux<a><img src="./media/Jorge.jpg" width=145/></a>[![GitHub followers](https://img.shields.io/github/followers/jorgechauxjr?label=Follow%20me&style=social)](https://github.com/jorgechauxjr)|David Alejandro Ortiz D<a><img src="./media/David.jpg" width=145/></a>[![GitHub followers](https://img.shields.io/github/followers/alejoortizd?label=Follow%20me&style=social)](https://github.com/alejoortizd)
+**Daniel Gustavo Quintero**<a><img src="./media/Daniel.jpg" width=145 />[![GitHub followers](https://img.shields.io/github/followers/dgquintero?label=Follow%20me&style=social)](https://github.com/dgquintero)</a><a href="http://twitter.com/@alejoortizd" target="_blank">![follow me](https://img.shields.io/twitter/follow/danielq02?style=social)</a>|**Oscar Mauricio Rodriguez**<a><img src="./media/Oscar.jpg" width=145/>[![GitHub followers](https://img.shields.io/github/followers/oscarmrt?label=Follow%20me&style=social)](https://github.com/oscarmrt)</a><a href="http://twitter.com/@alejoortizd" target="_blank">![follow me](https://img.shields.io/twitter/follow/OscaRT07?style=social)</a>|**Jorge Chaux Jr**<a><img src="./media/Jorge.jpg" width=145/></a>[![GitHub followers](https://img.shields.io/github/followers/jorgechauxjr?label=Follow%20me&style=social)](https://github.com/jorgechauxjr)<a href="http://twitter.com/@alejoortizd" target="_blank">![follow me](https://img.shields.io/twitter/follow/jorgechauxjr?style=social)</a>|**David Alejandro Ortiz D**<a><img src="./media/David.jpg" width=145/></a>[![GitHub followers](https://img.shields.io/github/followers/alejoortizd?label=Follow%20me&style=social)](https://github.com/alejoortizd)<a href="http://twitter.com/@alejoortizd" target="_blank">![follow me](https://img.shields.io/twitter/follow/alejoortizd?style=social)</a>
