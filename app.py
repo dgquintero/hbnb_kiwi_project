@@ -9,7 +9,6 @@ import numpy as np
 # Tensor flow
 import tensorflow as tf
 from tensorflow import Graph, Session
-#graph = tf.get_default_graph()
 # Keras
 import keras
 from keras.applications.imagenet_utils import preprocess_input, decode_predictions
@@ -20,8 +19,6 @@ from keras.initializers import glorot_uniform
 from flask import Flask, redirect, url_for, request, render_template
 from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
-#sess = tf.compat.v1.Session()
-#sess.run(tf.compat.v1.global_variables_initializer())
 global graph,model
 graph = tf.get_default_graph()
 
@@ -32,14 +29,11 @@ model_graph = Graph()
 with model_graph.as_default():
     tf_session = Session()
     with tf_session.as_default():
-# Model saved with Keras model.save()
         MODELS_PATH = 'models/model_new.h5'
         WEIGHT_MODELS = 'models/weights_new.h5'
         cnn = tf.keras.models.load_model(MODELS_PATH)
         cnn.load_weights(WEIGHT_MODELS)
-#cnn._make_predict_function()
 print('Model loaded. Check http://127.0.0.1:5000/')
-#graph = tf.get_default_graph()
 
 def model_predict(img_path, cnn):
 
@@ -47,11 +41,7 @@ def model_predict(img_path, cnn):
 
     # Preprocessing the image
     x = img_to_array(x)
-    # x = np.true_divide(x, 255)
     x = np.expand_dims(x, axis=0)
-    # x = preprocess_input(x, mode='caffe')
-    # Be careful how your trained model deals with the input
-    # otherwise, it won't make correct prediction!
     with model_graph.as_default():
         with tf_session.as_default():
             array = cnn.predict(x)
@@ -89,15 +79,11 @@ def upload():
         elif preds == 2:
             return ("Far")
         elif preds == 3:
-            return ("No detection")
-        # Convert to string
-        #pred_class = decode_predictions(preds, top=1)   # ImageNet Decode
-        #result = str(pred_class[0][0][1])  
+            return ("Super far")  
         return preds
     return None
 
 
 if __name__ == '__main__':
-    #graph = tf.get_default_graph()
     app.run(debug=True)
 
