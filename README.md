@@ -155,7 +155,7 @@ So as the target data set is large and different from the base data set, we crea
 ## **Results**
 For Kiwi, the sectors are very important, that's why they shared the areas that they needed to recognize, these areas are shown in the following image:
 
-<img src="./media/zones.jpg" />
+<img src="./media/zones.png" />
 
 >The red zone is ***near***, the yellow is ***medium***, the green is ***far*** and where there is no color it is considered ***super far***.
 
